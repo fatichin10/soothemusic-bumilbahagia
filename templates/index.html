@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+    <title>Soothing µ'sic - Bumil Bahagia</title>
+</head>
+
+<body class="pt-8 px-8 bg-gradient-to-r from-green-400 to-blue-500 md:flex-row">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-lg-5">
+                <div class="sticky top-8 bg-white shadow p-12 rounded-lg h-fit">                    
+                    <h3 class="text-xl font-bold mt-2 mb-3">MUSIC UPLOAD</h3>
+                    <form method="post" action="{{ url_for('play_music') }}" enctype="multipart/form-data" class="flex flex-col">
+                        <input type="file" name="audio" class="mb-3 p-3 border-4 border-blue-200 rounded-md bg-blue-100"/>
+                        <button type="submit" class="btn btn-success btn-block">Upload</button>
+                    </form>
+                </div>
+                <div class="bg-white p-6 rounded-lg mt-6 flex justify-around" style="position:sticky; top:350px">
+                    <img class="h-12 sm:h-12" alt="logo-1"
+                        src="{{ url_for('static', filename = 'images/its.png') }}"
+                    />
+                    <img class="h-12 sm:h-12" alt="logo-2"
+                        src="{{ url_for('static', filename = 'images/si.png') }}"
+                    />
+                    <img class="h-12 sm:h-12" alt="logo-3"
+                        src="{{ url_for('static', filename = 'images/rdib.png') }}"
+                    />
+                </div>
+            </div>
+            <div class="col-lg-7 h-full flex-auto">
+                <div class="shadow bg-white p-16 rounded-lg">
+                    <h1 class="text-3xl font-bold mb-8">Soothing Music List :</h1>
+                    <div class="container">
+
+                        {% for music in music_list %}
+
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h5>{{ music }}</h5>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="{{ url_for('play', filename=music) }}" class="btn btn-success">Play 
+                                        <iconify-icon icon="gg:play-button-o"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-gray-300 bg-gray-800 mt-2">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-4">
+                    <b>Creator:</b>
+                    <div>Mochammad Rizqul Fatichin</div>
+                </div>
+                <div class="col-4">
+                    <b>Supervisor:</b>
+                    <div>Retno Aulia Vinarti, S.Kom., M.Kom., Ph.D</div>
+                    <div>Edwin Riksakomara, S.Kom, M.T</div>
+                    <div>Ahmad Mukhlason, S.Kom, M.Sc, Ph.D</div>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#">Back to top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
